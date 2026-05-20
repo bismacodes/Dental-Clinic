@@ -247,32 +247,32 @@
                         {{-- Details list --}}
                         <div class="list-group list-group-flush border-top">
 
-                            <div class="list-group-item px-4 py-3 d-flex justify-content-between align-items-center">
+                            <div class="list-group-item px-4 py-2 d-flex justify-content-between align-items-center">
                                 <span class="small text-muted d-flex align-items-center gap-2">
-                                    <i class="bi bi-calendar3 text-primary"></i> Date of Birth
+                                    Date of Birth
                                 </span>
                                 <span class="small fw-semibold">
                                     {{ \Carbon\Carbon::parse($patient->date_of_birth)->format('d M, Y') }}
                                 </span>
                             </div>
 
-                            <div class="list-group-item px-4 py-3 d-flex justify-content-between align-items-center">
+                            <div class="list-group-item px-4 py-2 d-flex justify-content-between align-items-center">
                                 <span class="small text-muted d-flex align-items-center gap-2">
-                                    <i class="bi bi-telephone text-success"></i> Phone
+                                    Phone
                                 </span>
                                 <span class="small fw-semibold">{{ $patient->phone_no }}</span>
                             </div>
 
-                            <div class="list-group-item px-4 py-3 d-flex justify-content-between align-items-center">
+                            <div class="list-group-item px-4 py-2 d-flex justify-content-between align-items-center">
                                 <span class="small text-muted d-flex align-items-center gap-2">
-                                    <i class="bi bi-telephone-forward text-warning"></i> Emergency
+                                    Emergency
                                 </span>
                                 <span class="small fw-semibold">{{ $patient->relative_phone_no }}</span>
                             </div>
 
-                            <div class="list-group-item px-4 py-3">
+                            <div class="list-group-item px-4 py-2">
                                 <span class="small text-muted d-flex align-items-center gap-2 mb-1">
-                                    <i class="bi bi-geo-alt text-danger"></i> Address
+                                    Address
                                 </span>
                                 <span class="small fw-semibold">{{ $patient->address }}</span>
                             </div>
@@ -301,28 +301,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Quick Actions --}}
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-3">
-                            <p class="small fw-semibold text-muted text-uppercase mb-2">Quick Actions</p>
-                            <div class="d-grid gap-2">
-                                <a href="{{ route('patients.show', $patient->id) }}"
-                                    class="btn btn-outline-primary btn-sm text-start">
-                                    <i class="bi bi-person me-2"></i> View Patient Profile
-                                </a>
-                                <a href="{{ route('patients.edit', $patient->id) }}"
-                                    class="btn btn-outline-secondary btn-sm text-start">
-                                    <i class="bi bi-pencil-square me-2"></i> Edit Patient Details
-                                </a>
-                                <a href="{{ route('visits.create', $patient->id) }}"
-                                    class="btn btn-outline-success btn-sm text-start">
-                                    <i class="bi bi-clipboard-plus me-2"></i> Record New Visit
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 

@@ -51,7 +51,8 @@ class PatientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $patient = Patient::findOrFail($id);
+        return view('patients.show', compact('patient'));
     }
 
     /**
@@ -90,6 +91,10 @@ class PatientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
+
+        return redirect()->route('patients.index')
+            ->with('success', 'Patient deleted successfully.');
     }
 }

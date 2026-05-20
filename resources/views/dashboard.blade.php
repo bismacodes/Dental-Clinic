@@ -1,265 +1,286 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard')
+
 @section('content')
+
     <x-ui.page-title title="Dashboard" subtitle="Welcome to NEU Dental Clinic Portal" />
+
     <div class="page-content">
-        <section class="row">
-            <div class="col-12 col-lg-9">
-                <div class="row">
-                    <div class="col-6 col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body px-4 py-4-5">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                        <div class="stats-icon purple mb-2">
-                                            <i class="iconly-boldShow"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Profile Views</h6>
-                                        <h6 class="font-extrabold mb-0">112.000</h6>
-                                    </div>
-                                </div>
-                            </div>
+
+        {{-- Stats Row --}}
+        <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 py-0">
+                        <div class="">
+                            <i class="bi bi-people text-primary" style="font-size: 60px"></i>
                         </div>
-                    </div>
-                    <div class="col-6 col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body px-4 py-4-5">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                        <div class="stats-icon blue mb-2">
-                                            <i class="iconly-boldProfile"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Followers</h6>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body px-4 py-4-5">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                        <div class="stats-icon green mb-2">
-                                            <i class="iconly-boldAdd-User"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Following</h6>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body px-4 py-4-5">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                        <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldBookmark"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <div class="text-muted small">Total Patients</div>
+                            <div class="fw-bold fs-5">{{ $totalPatients }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Profile Visit</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="chart-profile-visit"></div>
-                            </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <div class="">
+                            <i class="bi bi-gender-male text-success" style="font-size: 60px"></i>
+                        </div>
+                        <div>
+                            <div class="text-muted small">Male</div>
+                            <div class="fw-bold fs-5">{{ $malePatients }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 py-0">
+                        <div>
+                            <i class="bi bi-gender-female text-danger" style="font-size: 60px"></i>
+                        </div>
+                        <div>
+                            <div class="text-muted small">Female</div>
+                            <div class="fw-bold fs-5">{{ $femalePatients }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center gap-3 py-0">
+                        <div>
+                            <i class="bi bi-calendar-check text-warning" style="font-size: 60px"></i>
+                        </div>
+                        <div>
+                            <div class="text-muted small">Today's Visits</div>
+                            <div class="fw-bold fs-5">{{ $todaysVisits }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- ===== MAIN CONTENT ===== --}}
+        <div class="row g-3">
+
+            {{-- ===== LEFT 9 COLS ===== --}}
+            <div class="col-lg-9">
+                {{-- BOTTOM ROW --}}
+                <div class="row align-items-start g-3">
+
+                    {{-- Demographics --}}
                     <div class="col-12 col-xl-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Profile Visit</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <div class="d-flex align-items-center">
-                                            <svg class="bi text-primary" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-                                            </svg>
-                                            <h5 class="mb-0 ms-3">Europe</h5>
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div>
+                                        <h6 class="fw-bold mb-0">Demographics</h6>
+                                        <small class="text-muted">Patient gender breakdown</small>
+                                    </div>
+                                    <span class="badge bg-success text-muted border fw-normal">
+                                        {{ $totalPatients }} total
+                                    </span>
+                                </div>
+
+                                {{-- Male --}}
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="rounded-2 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center"
+                                                style="width:28px;height:28px;">
+                                                <i class="bi bi-gender-male text-primary" style="font-size:12px;"></i>
+                                            </div>
+                                            <span class="small fw-semibold">Male</span>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="small fw-bold text-primary">{{ $malePatients }}</span>
+                                            <span class="text-muted small ms-1">
+                                                ({{ $totalPatients > 0 ? round(($malePatients / $totalPatients) * 100) : 0 }}%)
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-5">
-                                        <h5 class="mb-0 text-end">862</h5>
-                                    </div>
-                                    <div class="col-12">
-                                        <div id="chart-europe"></div>
+                                    <div class="progress rounded-pill" style="height:6px;">
+                                        <div class="progress-bar bg-primary rounded-pill"
+                                            style="width:{{ $totalPatients > 0 ? round(($malePatients / $totalPatients) * 100) : 0 }}%;">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <div class="d-flex align-items-center">
-                                            <svg class="bi text-success" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-                                            </svg>
-                                            <h5 class="mb-0 ms-3">America</h5>
+
+                                {{-- Female --}}
+                                <div class="">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="rounded-2 bg-danger bg-opacity-10 d-flex align-items-center justify-content-center"
+                                                style="width:28px;height:28px;">
+                                                <i class="bi bi-gender-female text-danger" style="font-size:12px;"></i>
+                                            </div>
+                                            <span class="small fw-semibold">Female</span>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="small fw-bold text-danger">{{ $femalePatients }}</span>
+                                            <span class="text-muted small ms-1">
+                                                ({{ $totalPatients > 0 ? round(($femalePatients / $totalPatients) * 100) : 0 }}%)
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="col-5">
-                                        <h5 class="mb-0 text-end">375</h5>
-                                    </div>
-                                    <div class="col-12">
-                                        <div id="chart-america"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <div class="d-flex align-items-center">
-                                            <svg class="bi text-danger" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                                <use xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
-                                            </svg>
-                                            <h5 class="mb-0 ms-3">Indonesia</h5>
+                                    <div class="progress rounded-pill" style="height:6px;">
+                                        <div class="progress-bar bg-danger rounded-pill"
+                                            style="width:{{ $totalPatients > 0 ? round(($femalePatients / $totalPatients) * 100) : 0 }}%;">
                                         </div>
-                                    </div>
-                                    <div class="col-5">
-                                        <h5 class="mb-0 text-end">1025</h5>
-                                    </div>
-                                    <div class="col-12">
-                                        <div id="chart-indonesia"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {{-- Recent Visits --}}
                     <div class="col-12 col-xl-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Latest Comments</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-lg">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Comment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/5.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Congratulations on your graduation!</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/2.jpg">
-                                                        </div>
-                                                        <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                    </div>
-                                                </td>
-                                                <td class="col-auto">
-                                                    <p class=" mb-0">Wow amazing design! Can you make another tutorial for
-                                                        this design?</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body p-4 pb-0">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h6 class="fw-bold mb-0">Recent Visits</h6>
+                                        <small class="text-muted">Latest patient consultations</small>
+                                    </div>
+                                    <a href="{{ route('visits.index') }}"
+                                        class="text-primary text-decoration-none small fw-semibold">
+                                        View all <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
                                 </div>
                             </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead>
+                                        <tr class="border-top border-bottom">
+                                            <th class="ps-4 py-2 small text-muted fw-semibold text-uppercase bg-transparent"
+                                                style="font-size:10px; letter-spacing:.05em;">Patient</th>
+                                            <th class="py-2 small text-muted fw-semibold text-uppercase bg-transparent"
+                                                style="font-size:10px; letter-spacing:.05em;">Complaint</th>
+                                            <th class="py-2 small text-muted fw-semibold text-uppercase bg-transparent"
+                                                style="font-size:10px; letter-spacing:.05em;">Date</th>
+                                            <th class="py-2 bg-transparent"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($recentVisits as $visit)
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0"
+                                                            style="width:34px;height:34px;">
+                                                            <span class="fw-bold text-primary" style="font-size:10px;">
+                                                                {{ strtoupper(substr($visit->patient->firstname, 0, 1)) }}{{ strtoupper(substr($visit->patient->surname, 0, 1)) }}
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <div class="fw-semibold small lh-sm">
+                                                                {{ $visit->patient->surname }}
+                                                                {{ $visit->patient->firstname }}
+                                                            </div>
+                                                            <small class="text-muted" style="font-size:10px;">
+                                                                {{ ucfirst($visit->patient->gender) }} ·
+                                                                {{ \Carbon\Carbon::parse($visit->patient->date_of_birth)->age }}yrs
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="max-width:160px;">
+                                                    <p class="small text-truncate mb-0 text-muted">
+                                                        {{ $visit->complaint }}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <div class="small fw-semibold lh-sm">
+                                                        {{ \Carbon\Carbon::parse($visit->visited_at)->format('d M, Y') }}
+                                                    </div>
+                                                    <small class="text-muted" style="font-size:10px;">
+                                                        {{ \Carbon\Carbon::parse($visit->visited_at)->format('h:i A') }}
+                                                    </small>
+                                                </td>
+                                                {{-- <td class="pe-3">
+                                                    <a href="{{ route('visits.show', $visit->id) }}"
+                                                        class="btn btn-sm btn-light border px-2" title="View Visit"
+                                                        style="font-size:12px;">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                </td> --}}
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center py-5">
+                                                    <span class="text-muted small">No visits recorded yet.</span>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- ===== RIGHT SIDEBAR 3 COLS ===== --}}
+            <div class="col-lg-3 d-flex flex-column gap-3">
+
+                {{-- RECENT PATIENTS --}}
+                <div class="card border-0 shadow-sm flex-grow-1">
+                    <div class="card-body p-4 pb-2">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="fw-bold mb-0">Recent Patients</h6>
+                                <small class="text-muted">Newly registered</small>
+                            </div>
+                            <a href="{{ route('patients.index') }}"
+                                class="text-primary text-decoration-none small fw-semibold">
+                                All <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="px-3 pb-3 d-flex flex-column gap-1">
+                        @forelse ($recentPatients as $patient)
+                            <a href="{{ route('patients.show', $patient->id) }}"
+                                class="d-flex align-items-center gap-3 p-2 rounded-3 text-decoration-none"
+                                style="transition:.15s;" onmouseover="this.style.background='rgba(0,123,255,0.05)'"
+                                onmouseout="this.style.background='transparent'">
+                                <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center flex-shrink-0"
+                                    style="width:36px;height:36px;">
+                                    <span class="fw-bold text-primary" style="font-size:10px;">
+                                        {{ strtoupper(substr($patient->firstname, 0, 1)) }}{{ strtoupper(substr($patient->surname, 0, 1)) }}
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <div class="fw-semibold small text-truncate lh-sm">
+                                        {{ $patient->surname }} {{ $patient->firstname }}
+                                    </div>
+                                    <small class="text-muted" style="font-size:10px;">
+                                        {{ \Carbon\Carbon::parse($patient->date_of_birth)->age }}yrs ·
+                                        {{ ucfirst($patient->gender) }}
+                                    </small>
+                                </div>
+                                <i class="bi bi-chevron-right text-muted flex-shrink-0" style="font-size:10px;"></i>
+                            </a>
+                        @empty
+                            <div class="text-center py-3 text-muted small">No patients yet.</div>
+                        @endforelse
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
-                <div class="card">
-                    <div class="card-body py-4 px-4">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl">
-                                <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
-                            </div>
-                            <div class="ms-3 name">
-                                <h5 class="font-bold">John Duck</h5>
-                                <h6 class="text-muted mb-0">@johnducky</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Recent Messages</h4>
-                    </div>
-                    <div class="card-content pb-4">
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="./assets/compiled/jpg/4.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">Hank Schrader</h5>
-                                <h6 class="text-muted mb-0">@johnducky</h6>
-                            </div>
-                        </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="./assets/compiled/jpg/5.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">Dean Winchester</h5>
-                                <h6 class="text-muted mb-0">@imdean</h6>
-                            </div>
-                        </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="./assets/compiled/jpg/1.jpg">
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">John Dodol</h5>
-                                <h6 class="text-muted mb-0">@dodoljohn</h6>
-                            </div>
-                        </div>
-                        <div class="px-4">
-                            <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>Start
-                                Conversation</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Visitors Profile</h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="chart-visitors-profile"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+        </div>
     </div>
+
 @endsection

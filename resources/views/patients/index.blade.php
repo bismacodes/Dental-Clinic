@@ -94,7 +94,7 @@
 
                                     <td>
                                         <span class="badge bg-light text-dark border fw-normal font-monospace">
-                                            #LATER
+                                            #P{{ str_pad($patient->id, 5, '0', STR_PAD_LEFT) }}
                                         </span>
                                     </td>
 
