@@ -71,6 +71,19 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item {{ request()->routeIs('visits.index') ? 'active' : '' }}">
+                    <a href="{{ route('visits.index') }}" class="sidebar-link">
+                        <i class="bi bi-calendar-check"></i>
+                        <span>Visits</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('password.show') ? 'active' : '' }}">
+                    <a href="{{ route('password.show') }}" class="sidebar-link">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>Change Password</span>
+                    </a>
+                </li>
 
             </ul>
 

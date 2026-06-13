@@ -93,7 +93,7 @@
                                     <td class="ps-4 text-muted small">{{ $loop->iteration }}</td>
 
                                     <td>
-                                        <span class="badge bg-light text-dark border fw-normal font-monospace">
+                                        <span class="badge border fw-normal font-monospace">
                                             #P{{ str_pad($patient->id, 5, '0', STR_PAD_LEFT) }}
                                         </span>
                                     </td>

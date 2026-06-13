@@ -20,11 +20,11 @@
                     <div class="row g-3 mb-3">
 
                         <div class="col-md-4">
-                            <x-ui.input name="surname" label="Surname" placeholder="e.g. Adeyemi" required />
+                            <x-ui.input name="surname" label="Surname" placeholder="e.g. Bashir" required />
                         </div>
 
                         <div class="col-md-4">
-                            <x-ui.input name="firstname" label="First Name" placeholder="e.g. Chukwuemeka" required />
+                            <x-ui.input name="firstname" label="First Name" placeholder="e.g. Adamu" required />
                         </div>
 
                         <div class="col-md-4">
@@ -34,6 +34,20 @@
                         <div class="col-md-6">
                             <x-ui.select name="gender" label="Gender" :options="['male' => 'Male', 'female' => 'Female', 'other' => 'Other']" placeholder="Select gender"
                                 required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <x-ui.select name="blood_group" label="Blood Group" :options="[
+                                'A+' => 'A+',
+                                'A-' => 'A-',
+                                'B+' => 'B+',
+                                'B-' => 'B-',
+                                'AB+' => 'AB+',
+                                'AB-' => 'AB-',
+                                'O+' => 'O+',
+                                'O-' => 'O-',
+                            ]"
+                                placeholder="Select blood group" required />
                         </div>
 
                         <div class="col-md-6">

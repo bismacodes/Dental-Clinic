@@ -49,7 +49,7 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Patient ID</label>
                                     <p class="fw-semibold mb-0">
-                                        <span class="badge bg-light text-dark border font-monospace">
+                                        <span class="badge border font-monospace">
                                             #P{{ str_pad($patient->id, 5, '0', STR_PAD_LEFT) }}
                                         </span>
                                     </p>
@@ -355,5 +355,4 @@
 
         </div>
     </div>
-
 @endsection

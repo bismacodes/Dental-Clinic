@@ -10,17 +10,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-
-<!-- Need: Apexcharts -->
-<script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-<script src="assets/static/js/pages/dashboard.js"></script>
-
-
-<script src="{{ asset('assets/extensions/quill/quill.min.js') }}"></script>
-<script src="{{ asset('assets/static/js/pages/quill.js') }}"></script>
-
-
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 

@@ -44,6 +44,19 @@
                         </div>
 
                         <div class="col-md-6">
+                            <x-ui.select name="blood_group" label="Blood Group" :options="[
+                                'A+' => 'A+',
+                                'A-' => 'A-',
+                                'B+' => 'B+',
+                                'B-' => 'B-',
+                                'AB+' => 'AB+',
+                                'AB-' => 'AB-',
+                                'O+' => 'O+',
+                                'O-' => 'O-',
+                            ]" :selected="old('blood_group', $patient->blood_group)"
+                                placeholder="Select blood group" required />
+                        </div>
+                        <div class="col-md-6">
                             <x-ui.input name="date_of_birth" label="Date of Birth" type="date" :value="old('date_of_birth', $patient->date_of_birth)"
                                 max="{{ now()->format('Y-m-d') }}" required />
                         </div>
@@ -68,7 +81,8 @@
 
                         <div class="col-12">
                             <x-ui.textarea name="address" label="Home Address"
-                                placeholder="Enter full residential address..." rows="3" required :value="$patient->address" />
+                                placeholder="Enter full residential address..." rows="3" required
+                                :value="$patient->address" />
                         </div>
                     </div>
 

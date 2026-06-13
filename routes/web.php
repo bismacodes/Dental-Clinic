@@ -19,4 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('visits', VisitController::class)->only(['index']);
     Route::get('/visit/create/{patient}', [PagesController::class, 'createVisit'])->name('visits.create');
     Route::post('/visit/store', [PagesController::class, 'storeVisit'])->name('visits.store');
+    Route::get('/change-password', [AuthController::class, 'showChangePassword'])->name('password.show');
+    Route::put('/change-password', [AuthController::class, 'updatePassword'])->name('password.update');
+    Route::get('/logout', [AuthController::class, 'handleLogout'])->name('logout');
 });

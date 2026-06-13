@@ -27,12 +27,6 @@
     <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
 
-
-    {{-- Quill Editor --}}
-    <link rel="stylesheet" href="{{ asset('assets/extensions/quill/quill.snow.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extensions/quill/quill.bubble.css') }}">
-
-
     {{-- Datatable --}}
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable-jquery.css') }}">

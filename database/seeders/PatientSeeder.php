@@ -22,6 +22,7 @@ class PatientSeeder extends Seeder
                 'surname' => $faker->lastName,
                 'othername' => $faker->optional()->firstName,
                 'gender' => $faker->randomElement(['male', 'female', 'other']),
+                'blood_group' => $faker->randomElement(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
                 'date_of_birth' => $faker->date('Y-m-d', '2005-01-01'),
                 'phone_no' => $faker->phoneNumber,
                 'relative_phone_no' => $faker->phoneNumber,
