@@ -13,6 +13,8 @@ class Visit extends Model
         'treatment_plan',
         'investigation',
         'medication',
+        'medical_history',
+        'dental_history',
         'review',
     ];
 

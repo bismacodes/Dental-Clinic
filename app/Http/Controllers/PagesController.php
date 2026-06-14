@@ -56,6 +56,8 @@ class PagesController extends Controller
             'treatment_plan' => 'nullable|string',
             'investigation' => 'nullable|string',
             'medication' => 'nullable|string',
+            'medical_history' => 'nullable|string',
+            'dental_history' => 'nullable|string',
             'review' => 'nullable|string',
         ]);
 

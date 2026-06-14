@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <x-ui.page-title title="Dashboard" subtitle="Welcome to NEU Dental Clinic Portal" />
+    <x-ui.page-title title="Dashboard" subtitle="Welcome to  White Edge Clinic" />
 
     <div class="page-content">
 

@@ -49,6 +49,13 @@
                             <x-ui.textarea name="treatment_plan" label="Treatment Plan"
                                 placeholder="Procedures, recommendations, interventions..." rows="3" />
 
+
+                            <x-ui.textarea name="medical_history" label="Medical History"
+                                placeholder="Past medical conditions, surgeries, allergies..." rows="3" />
+
+                            <x-ui.textarea name="dental_history" label="Dental History"
+                                placeholder="Past dental procedures, treatments, concerns..." rows="3" />
+
                             {{-- Divider --}}
                             <div class="d-flex align-items-center gap-2 mb-3 mt-5">
                                 <span class="small fw-bold text-uppercase text-muted">Prescription & Follow-up</span>

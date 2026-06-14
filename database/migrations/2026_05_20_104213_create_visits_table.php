@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('treatment_plan')->nullable();
             $table->text('investigation')->nullable();
             $table->text('medication')->nullable();
+            $table->text('medical_history')->nullable();
+            $table->text('dental_history')->nullable();
             $table->text('review')->nullable();
             $table->timestamps();
         });
