@@ -10,10 +10,9 @@ Route::get('/', function () {
     return view('login');
 });
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'handleLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'handleLogin']);
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'handleLogout'])->name('logout');
     Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
     Route::resource('patients', PatientController::class);
     Route::resource('visits', VisitController::class)->only(['index']);
