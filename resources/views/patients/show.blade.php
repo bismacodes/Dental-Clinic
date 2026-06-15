@@ -49,7 +49,7 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Patient ID</label>
                                     <p class="fw-semibold mb-0">
-                                        <span class="badge border font-monospace">
+                                        <span class="badge text-primary border font-monospace">
                                             #P{{ str_pad($patient->id, 5, '0', STR_PAD_LEFT) }}
                                         </span>
                                     </p>
@@ -61,11 +61,6 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Gender</label>
                                     <p class="fw-semibold mb-0 text-capitalize">
-                                        @if ($patient->gender === 'male')
-                                            <i class="bi bi-gender-male text-primary me-1"></i>
-                                        @elseif($patient->gender === 'female')
-                                            <i class="bi bi-gender-female text-danger me-1"></i>
-                                        @endif
                                         {{ $patient->gender }}
                                     </p>
                                 </div>
@@ -89,7 +84,6 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Phone Number</label>
                                     <p class="fw-semibold mb-0">
-                                        <i class="bi bi-telephone text-success me-1"></i>
                                         {{ $patient->phone_no }}
                                     </p>
                                 </div>
@@ -100,7 +94,6 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Emergency Contact</label>
                                     <p class="fw-semibold mb-0">
-                                        <i class="bi bi-telephone-forward text-warning me-1"></i>
                                         {{ $patient->relative_phone_no }}
                                     </p>
                                 </div>
@@ -111,7 +104,6 @@
                                 <div>
                                     <label class="form-label text-muted small fw-semibold mb-2">Home Address</label>
                                     <p class="fw-semibold mb-0">
-                                        <i class="bi bi-geo-alt text-danger me-1"></i>
                                         {{ $patient->address }}
                                     </p>
                                 </div>
@@ -158,8 +150,8 @@
                             </div>
                             <div>
                                 <span class="badge bg-primary rounded-pill px-3">
-                                    {{ $patient->visits->count() }}
-                                    {{ Str::plural('Visit', $patient->visits->count()) }}
+                                    {{ $visits->total() }}
+                                    {{ Str::plural('Visit', $visits->total()) }}
                                 </span>
                                 <a href="{{ route('visits.create', $patient->id) }}" class="btn btn-sm btn-success ms-2">
                                     <i class="bi bi-clipboard-plus me-1"></i> Record Visit
@@ -170,11 +162,11 @@
 
                     <div class="card-body p-0">
 
-                        @if ($patient->visits->count() > 0)
+                        @if ($visits->count() > 0)
 
                             {{-- Timeline --}}
                             <div class="p-4">
-                                @foreach ($patient->visits->sortByDesc('visited_at') as $visit)
+                                @foreach ($visits as $visit)
                                     <div class="d-flex gap-3 mb-4 {{ !$loop->last ? 'pb-4 border-bottom' : '' }}">
 
                                         {{-- Timeline dot --}}
@@ -191,7 +183,6 @@
                                         <div class="flex-grow-1">
                                             <div class="d-flex justify-content-between align-items-start mb-2">
                                                 <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold">
-                                                    <i class="bi bi-calendar2 me-1"></i>
                                                     {{ \Carbon\Carbon::parse($visit->visited_at)->format('d M, Y · h:i A') }}
                                                 </span>
                                             </div>
@@ -202,7 +193,6 @@
                                                     <div class="col-md-6">
                                                         <div class="rounded-3 bg-danger bg-opacity-10 p-3 h-100">
                                                             <small class="text-muted d-block mb-2 fw-semibold">
-                                                                <i class="bi bi-exclamation-circle text-danger me-1"></i>
                                                                 Complaint
                                                             </small>
                                                             <p class="mb-0 small">{{ $visit->complaint }}</p>
@@ -214,7 +204,6 @@
                                                     <div class="col-md-6">
                                                         <div class="rounded-3 bg-info bg-opacity-10 p-3 h-100">
                                                             <small class="text-muted d-block mb-2 fw-semibold">
-                                                                <i class="bi bi-microscope text-info me-1"></i>
                                                                 Investigation
                                                             </small>
                                                             <p class="mb-0 small">{{ $visit->investigation }}</p>
@@ -226,7 +215,6 @@
                                                     <div class="col-md-6">
                                                         <div class="rounded-3 bg-success bg-opacity-10 p-3 h-100">
                                                             <small class="text-muted d-block mb-2 fw-semibold">
-                                                                <i class="bi bi-heart-pulse text-success me-1"></i>
                                                                 Treatment Plan
                                                             </small>
                                                             <p class="mb-0 small">{{ $visit->treatment_plan }}</p>
@@ -238,10 +226,31 @@
                                                     <div class="col-md-6">
                                                         <div class="rounded-3 bg-warning bg-opacity-10 p-3 h-100">
                                                             <small class="text-muted d-block mb-2 fw-semibold">
-                                                                <i class="bi bi-capsule text-warning me-1"></i>
                                                                 Medication
                                                             </small>
                                                             <p class="mb-0 small">{{ $visit->medication }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if ($visit->medical_history)
+                                                    <div class="col-md-6">
+                                                        <div class="rounded-3 bg-primary bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Medical History
+                                                            </small>
+                                                            <p class="mb-0 small">{{ $visit->medical_history }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if ($visit->dental_history)
+                                                    <div class="col-md-6">
+                                                        <div class="rounded-3 bg-dark bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Dental History
+                                                            </small>
+                                                            <p class="mb-0 small">{{ $visit->dental_history }}</p>
                                                         </div>
                                                     </div>
                                                 @endif
@@ -250,7 +259,6 @@
                                                     <div class="col-md-6">
                                                         <div class="rounded-3 bg-secondary bg-opacity-10 p-3 h-100">
                                                             <small class="text-muted d-block mb-2 fw-semibold">
-                                                                <i class="bi bi-arrow-repeat text-secondary me-1"></i>
                                                                 Review
                                                             </small>
                                                             <p class="mb-0 small">{{ $visit->review }}</p>
@@ -263,16 +271,17 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            {{-- Pagination --}}
+                            <div class="p-4 pt-0">
+                                {{ $visits->links() }}
+                            </div>
                         @else
                             <div class="text-center py-5">
-                                <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3"
-                                    style="width:72px; height:72px;">
-                                    <i class="bi bi-clipboard-x text-muted fs-2"></i>
-                                </div>
                                 <h6 class="fw-semibold mb-1">No previous visits</h6>
                                 <p class="text-muted small mb-3">This patient has no consultation history yet.</p>
                                 <a href="{{ route('visits.create', $patient->id) }}" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-clipboard-plus me-1"></i> Record First Visit
+                                    Record First Visit
                                 </a>
                             </div>
                         @endif
@@ -317,8 +326,6 @@
                             <div class="d-flex justify-content-center gap-2 mt-3">
                                 <span
                                     class="badge rounded-pill bg-primary bg-opacity-10 text-primary text-capitalize px-3">
-                                    <i
-                                        class="bi bi-gender-{{ $patient->gender === 'male' ? 'male' : 'female' }} me-1"></i>
                                     {{ $patient->gender }}
                                 </span>
                                 <span class="badge rounded-pill bg-secondary bg-opacity-10 text-secondary px-3">

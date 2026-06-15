@@ -34,6 +34,7 @@ class PatientController extends Controller
             'firstname'         => 'required|string|max:100',
             'othername'         => 'nullable|string|max:100',
             'gender'            => 'required|in:male,female,other',
+            'blood_group'       => 'required|string|max:3',
             'date_of_birth'     => 'required|date|before:today',
             'phone_no'          => 'required|string|max:20',
             'relative_phone_no' => 'required|string|max:20',
@@ -52,7 +53,8 @@ class PatientController extends Controller
     public function show(string $id)
     {
         $patient = Patient::findOrFail($id);
-        return view('patients.show', compact('patient'));
+        $visits = $patient->visits()->orderByDesc('visited_at')->paginate(5);
+        return view('patients.show', compact('patient', 'visits'));
     }
 
     /**
@@ -73,6 +75,7 @@ class PatientController extends Controller
             'firstname'         => 'required|string|max:100',
             'othername'         => 'nullable|string|max:100',
             'gender'            => 'required|in:male,female,other',
+            'blood_group'       => 'required|string|max:3',
             'date_of_birth'     => 'required|date|before:today',
             'phone_no'          => 'required|string|max:20',
             'relative_phone_no' => 'required|string|max:20',

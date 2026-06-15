@@ -89,30 +89,29 @@
 
                     <div class="card-header border-bottom py-3 px-4">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="rounded-2 bg-warning bg-opacity-10 p-2 d-flex align-items-center justify-content-center"
-                                    style="width:36px; height:36px;">
-                                    <i class="bi bi-clock-history text-warning"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold mb-0">Visit History</h6>
-                                    <small class="text-muted">Previous consultations</small>
-                                </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Visit History</h6>
+                                <small class="text-muted">All consultations and treatments</small>
                             </div>
-                            <span class="badge bg-primary rounded-pill px-3">
-                                {{ $patient->visits->count() }}
-                                {{ Str::plural('Visit', $patient->visits->count()) }}
-                            </span>
+                            <div>
+                                <span class="badge bg-primary rounded-pill px-3">
+                                    {{ $visits->total() }}
+                                    {{ Str::plural('Visit', $visits->total()) }}
+                                </span>
+                                <a href="{{ route('visits.create', $patient->id) }}" class="btn btn-sm btn-success ms-2">
+                                    <i class="bi bi-clipboard-plus me-1"></i> Record Visit
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-body p-0">
 
-                        @if ($patient->visits->count() > 0)
+                        @if ($visits->count() > 0)
 
                             {{-- Timeline --}}
                             <div class="p-4">
-                                @foreach ($patient->visits->sortByDesc('visited_at') as $visit)
+                                @foreach ($visits as $visit)
                                     <div class="d-flex gap-3 mb-4 {{ !$loop->last ? 'pb-4 border-bottom' : '' }}">
 
                                         {{-- Timeline dot --}}
@@ -129,7 +128,6 @@
                                         <div class="flex-grow-1">
                                             <div class="d-flex justify-content-between align-items-start mb-2">
                                                 <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold">
-                                                    <i class="bi bi-calendar2 me-1"></i>
                                                     {{ \Carbon\Carbon::parse($visit->visited_at)->format('d M, Y · h:i A') }}
                                                 </span>
                                             </div>
@@ -138,50 +136,77 @@
 
                                                 @if ($visit->complaint)
                                                     <div class="col-md-6">
-                                                        <div class="rounded-3 bg-danger bg-opacity-10 p-2 h-100">
-                                                            <small class="text-muted d-block mb-1 fw-semibold">
-                                                                <i class="bi bi-exclamation-circle text-danger me-1"></i>
+                                                        <div class="rounded-3 bg-danger bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
                                                                 Complaint
                                                             </small>
-                                                            <p class="mb-0 small text-truncate">{{ $visit->complaint }}
-                                                            </p>
+                                                            <p class="mb-0 small">{{ $visit->complaint }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if ($visit->investigation)
+                                                    <div class="col-md-6">
+                                                        <div class="rounded-3 bg-info bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Investigation
+                                                            </small>
+                                                            <p class="mb-0 small">{{ $visit->investigation }}</p>
                                                         </div>
                                                     </div>
                                                 @endif
 
                                                 @if ($visit->treatment_plan)
                                                     <div class="col-md-6">
-                                                        <div class="rounded-3 bg-success bg-opacity-10 p-2 h-100">
-                                                            <small class="text-muted d-block mb-1 fw-semibold">
-                                                                Treatment
+                                                        <div class="rounded-3 bg-success bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Treatment Plan
                                                             </small>
-                                                            <p class="mb-0 small text-truncate">
-                                                                {{ $visit->treatment_plan }}</p>
+                                                            <p class="mb-0 small">{{ $visit->treatment_plan }}</p>
                                                         </div>
                                                     </div>
                                                 @endif
 
                                                 @if ($visit->medication)
                                                     <div class="col-md-6">
-                                                        <div class="rounded-3 bg-warning bg-opacity-10 p-2 h-100">
-                                                            <small class="text-muted d-block mb-1 fw-semibold">
-                                                                <i class="bi bi-capsule text-warning me-1"></i>
+                                                        <div class="rounded-3 bg-warning bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
                                                                 Medication
                                                             </small>
-                                                            <p class="mb-0 small text-truncate">{{ $visit->medication }}
-                                                            </p>
+                                                            <p class="mb-0 small">{{ $visit->medication }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if ($visit->medical_history)
+                                                    <div class="col-md-6">
+                                                        <div class="rounded-3 bg-primary bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Medical History
+                                                            </small>
+                                                            <p class="mb-0 small">{{ $visit->medical_history }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if ($visit->dental_history)
+                                                    <div class="col-md-6">
+                                                        <div class="rounded-3 bg-dark bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
+                                                                Dental History
+                                                            </small>
+                                                            <p class="mb-0 small">{{ $visit->dental_history }}</p>
                                                         </div>
                                                     </div>
                                                 @endif
 
                                                 @if ($visit->review)
                                                     <div class="col-md-6">
-                                                        <div class="rounded-3 bg-info bg-opacity-10 p-2 h-100">
-                                                            <small class="text-muted d-block mb-1 fw-semibold">
-                                                                <i class="bi bi-arrow-repeat text-info me-1"></i>
+                                                        <div class="rounded-3 bg-secondary bg-opacity-10 p-3 h-100">
+                                                            <small class="text-muted d-block mb-2 fw-semibold">
                                                                 Review
                                                             </small>
-                                                            <p class="mb-0 small text-truncate">{{ $visit->review }}</p>
+                                                            <p class="mb-0 small">{{ $visit->review }}</p>
                                                         </div>
                                                     </div>
                                                 @endif
@@ -191,13 +216,19 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            {{-- Pagination --}}
+                            <div class="p-4 pt-0">
+                                {{ $visits->links() }}
+                            </div>
                         @else
                             <div class="text-center py-5">
-                                <i class="bi bi-clipboard-x text-muted fs-1"></i>
                                 <h6 class="fw-semibold mb-1">No previous visits</h6>
-                                <p class="text-muted small mb-0">This patient has no consultation history yet.</p>
+                                <p class="text-muted small mb-3">This patient has no consultation history yet.</p>
+                                <a href="{{ route('visits.create', $patient->id) }}" class="btn btn-primary btn-sm">
+                                    Record First Visit
+                                </a>
                             </div>
-
                         @endif
 
                     </div>

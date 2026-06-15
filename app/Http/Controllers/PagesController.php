@@ -44,7 +44,8 @@ class PagesController extends Controller
     public function createVisit($patientId)
     {
         $patient = Patient::findOrFail($patientId);
-        return view('patients.visit', compact('patient'));
+        $visits = $patient->visits()->orderByDesc('visited_at')->paginate(5);
+        return view('patients.visit', compact('patient', 'visits'));
     }
 
     public function storeVisit(Request $request)
